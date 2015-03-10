@@ -4,7 +4,7 @@
 from __future__ import division				#ensures division always returns the correct answer (eg. 1/2 = 0.5 instead of 1/2 = 0)
 import argparse
 import pylab as pl
-import os
+from sympy import *
 
 ###GLOBAL VARIABLES
 ##########################################################################################
@@ -101,12 +101,23 @@ L = b - a		#Length of line search is conducted on
 def lineSearchNewtonRapshon(a,b,L,r):
   solution = pl.np.zeros((3,1))
   solution_found = False
+  
+  x = (b+a)/2 		#assume a solution nearby
+  
+  #x = x - 
+  
+  
+  
   return solution
 
 ### Modification of the Newton-Raphson we discussed in class
 def modifiedNewtonRapshon(a,b,L,r):
   solution = pl.np.zeros((3,1))
   solution_found = False
+  
+  
+  
+  
   return solution
 
 ### Golden Section Method
@@ -142,7 +153,69 @@ def goldenSection(a,b,L,r):
 ##########################################################################################
 
 
-###TEST_FUNCTIONS
+###SYMBOLIC TEST_FUNCTIONS f'(x), f''(x)
+##########################################################################################
+def test1(order,lambdax):
+  x = Symbol('x')	#declare symbolic variable
+  f = Function('f')(x)
+  
+  f = x**2 + 2*exp(-x)
+  
+  if order == 0:
+    return f.subs(x,lambdax)
+  else:
+    f = f.diff(f,order)
+    return f.subs(x,lambdax)
+    
+def test2(order,lambdax):
+  x = Symbol('x')	#declare symbolic variable
+  f = Function('f')(x)
+  
+  f = x*cos(x)
+  
+  if order == 0:
+    return f.subs(x,lambdax)
+  else:
+    f = f.diff(f,order)
+    return f.subs(x,lambdax)
+
+def test3(order,lambdax):
+  x = Symbol('x')	#declare symbolic variable
+  f = Function('f')(x)
+  
+  f = 4*(x-7)/(x**2 + x - 2)
+  
+  if order == 0:
+    return f.subs(x,lambdax)
+  else:
+    f = f.diff(f,order)
+    return f.subs(x,lambdax)
+  
+def test4(order,lambdax):
+  x = Symbol('x')	#declare symbolic variable
+  f = Function('f')(x)
+  
+  f = x**4 - 20*x**3 + 0.1*x
+  
+  if order == 0:
+    return f.subs(x,lambdax)
+  else:
+    f = f.diff(f,order)
+    return f.subs(x,lambdax)  
+  
+  #return pl.np.power(lambdax,2) + 2*pl.np.exp(-lambdax)
+
+#def test2(lambdax):
+  #return -lambdax*pl.np.cos(lambdax)	#maximize
+
+#def test3(lambdax):
+  #return 4*(lambdax-7)/(pl.np.power(lambdax,2) + lambdax - 2)
+
+#def test4(lambdax):
+  #return pl.np.power(lambdax,4) - 20*pl.np.power(lambdax,3) + 0.1*lambdax
+
+
+###NUMERICAL TEST_FUNCTIONS f(x)
 ##########################################################################################
 def test1(lambdax):
   return pl.np.power(lambdax,2) + 2*pl.np.exp(-lambdax)
@@ -158,7 +231,8 @@ def test4(lambdax):
 
 def testFunction(lambdax):
   if args.choice == 1:
-    return test1(lambdax)
+    return test1_symbolic(0,lambdax)
+    #return test1(lambdax)
   elif args.choice == 2:
     return test2(lambdax)	
   elif args.choice == 3:
