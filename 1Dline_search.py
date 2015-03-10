@@ -127,10 +127,11 @@ def goldenSection(a,b,L,r):
   lambda1 = a + pl.np.power(r,2)*L
   lambda2 = a + r*L
   solution_found = False
+  order = 0
   
   while(solution_found == False):
-    f1 = testFunction(lambda1)
-    f2 = testFunction(lambda2)
+    f1 = testFunction(order,lambda1)
+    f2 = testFunction(order,lambda2)
     i = i + 1
     
     if(f1 > f2):
@@ -146,14 +147,14 @@ def goldenSection(a,b,L,r):
     
     if L < epsilon1:
       solution[0] = (b+a)/2
-      solution[1] = testFunction(solution[0])
+      solution[1] = testFunction(order,solution[0])
       solution[2] = i
       solution_found = True
       return solution
 ##########################################################################################
 
 
-###SYMBOLIC TEST_FUNCTIONS f'(x), f''(x)
+###SYMBOLIC TEST_FUNCTIONS f(x), f'(x), f''(x)
 ##########################################################################################
 def test1(order,lambdax):
   x = Symbol('x')	#declare symbolic variable
@@ -201,20 +202,9 @@ def test4(order,lambdax):
     return f.subs(x,lambdax)
   else:
     f = f.diff(f,order)
-    return f.subs(x,lambdax)  
-  
-  #return pl.np.power(lambdax,2) + 2*pl.np.exp(-lambdax)
+    return f.subs(x,lambdax) 
 
-#def test2(lambdax):
-  #return -lambdax*pl.np.cos(lambdax)	#maximize
-
-#def test3(lambdax):
-  #return 4*(lambdax-7)/(pl.np.power(lambdax,2) + lambdax - 2)
-
-#def test4(lambdax):
-  #return pl.np.power(lambdax,4) - 20*pl.np.power(lambdax,3) + 0.1*lambdax
-
-
+'''
 ###NUMERICAL TEST_FUNCTIONS f(x)
 ##########################################################################################
 def test1(lambdax):
@@ -228,18 +218,19 @@ def test3(lambdax):
 
 def test4(lambdax):
   return pl.np.power(lambdax,4) - 20*pl.np.power(lambdax,3) + 0.1*lambdax
+'''
 
-def testFunction(lambdax):
+def testFunction(order,lambdax):
   if args.choice == 1:
-    return test1_symbolic(0,lambdax)
-    #return test1(lambdax)
+    return test1(order,lambdax)
   elif args.choice == 2:
-    return test2(lambdax)	
+    return -test2(order,lambdax)	
   elif args.choice == 3:
-    return test3(lambdax)
+    return test3(order,lambdax)
   elif args.choice == 4:
-    return test4(lambdax)
+    return test4(order,lambdax)
 ##########################################################################################  
+
 
 ###RUN SELECTED ALGORITHM
 ##########################################################################################  
@@ -252,6 +243,7 @@ elif args.algorithm == 2:
 elif args.algorithm == 3:
   sol = goldenSection(a,b,L,r)
   algorithm_string = "Golden Section Method"
+  order = 0
 
 print "The following algorithm was used : " + algorithm_string
 print "The following test function was tested : " + example_string
@@ -263,6 +255,7 @@ fig1 = pl.figure(1)
 pl.title(algorithm_string + " evaluated by " + example_string)
 pl.xlabel("lambda")
 pl.ylabel("f(lambda)")
+#pl.figtext(0.40,0.882, "Total iterations: %d\nLambda solution: %d\nf(lambda solution): %d\n" %(sol[2],sol[0],sol[1]),fontsize=10, bbox=dict(facecolor = 'white', alpha=1, linewidth = 1, edgecolor = 'black'), horizontalalignment = 'left',verticalalignment='top')
 
 #is hierdie a en b weer global waardes?
 print "a = %.2f" %a
@@ -272,9 +265,9 @@ j = a
 k = 0
 while k < 50:
   if args.choice == 2:
-    graph.append(-testFunction(j))
+    graph.append(-testFunction(order,j))
   else:
-    graph.append(testFunction(j))
+    graph.append(testFunction(order,j))
     
   j = j + L/50.0
   k = k + 1
@@ -282,8 +275,10 @@ while k < 50:
 
 pl.plot(pl.np.arange(a,b,L/50.0),graph)
 if args.choice == 2:
+  pl.figtext(0.50,0.25, "Total iterations: %d\nLambda solution: %d\nf(lambda solution): %d\n" %(sol[2],sol[0],sol[1]),fontsize=10, bbox=dict(facecolor = 'white', alpha=1, linewidth = 1, edgecolor = 'black'), horizontalalignment = 'center',verticalalignment='top')
   pl.plot(sol[0], -sol[1], 'g.', markersize=20.0)			#adds a dot where the solution was found
 else:
+  pl.figtext(0.50,0.882, "Total iterations: %d\nLambda solution: %d\nf(lambda solution): %d\n" %(sol[2],sol[0],sol[1]),fontsize=10, bbox=dict(facecolor = 'white', alpha=1, linewidth = 1, edgecolor = 'black'), horizontalalignment = 'center',verticalalignment='top')
   pl.plot(sol[0], sol[1], 'g.', markersize=20.0)			#adds a dot where the solution was found
   
 pl.show()
