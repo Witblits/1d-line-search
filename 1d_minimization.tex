@@ -1,0 +1,166 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}					%for advanced mathmematical formulas
+\usepackage{graphicx}					%always use this package if you want to insert graphics into your report
+\usepackage{fullpage}
+
+
+
+\graphicspath{{./graphs/algorithm1/}{./graphs/algorithm2/}{./graphs/algorithm3/}{./graphs/*}}
+
+
+% Title Page
+\title{\Huge{One-Dimensional Line Search Methods Assignment}\\[7cm]Advanced Design 814\\[2cm]}
+
+\author{\Large Andreas Joss\\[0.5cm]16450612}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+\newpage
+\section{Introduction}
+This report briefly explains the  three different one-dimensional line search methods which are used for this assignment. Furthermore, the algorithms are implemented in code and the results thereof are shown and discussed. 
+
+\section{Example Functions}
+Example functions are used to evaluate the effectiveness of each algorithm and briefly compare the algorithm results with each other. Each graph displays several parameters for the particular optimization at hand as well as the solution that is found. Each test function has its own specified boundaries and also the tolerance of the accuracy of the desired solution. The following test functions are used:
+\\[0.5cm]
+(i) minimize $F(\lambda) = \lambda^{2} + 2e^{-\lambda} \text{ over } [0,2] \text{ with } \epsilon = 0.01$
+\\[0.5cm]
+(ii) maximize $F(\lambda) = \lambda \text{cos} \lambda \text{ over } [0,\frac{\pi}{2}] \text{ with } \epsilon = 0.001$
+\\[0.5cm]
+(iii) minimize $F(\lambda) = 4(\lambda - 7) / (\lambda^{2} + \lambda - 2) \text{ over } [-1.9,0.9] \text{ with }$ by performing no more than 10 function iterations.
+\\[0.5cm]
+(i) minimize $F(\lambda) = \lambda^{4} + -20\lambda^{3} + 0.1\lambda \text{ over } [0,20] \text{ with } \epsilon = 10^{-5}$
+
+\section{Results}
+The algorithm are programmed in the Python language, due to future work which will also require extensive Python scripting. The Matplotlib library is used to display the results in a neat and informative manner. In each case the green dot indicates the solution that is found by the algorithm.
+
+\newpage
+\subsection{1-D line search based on the Newton-Raphson Method}
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm1/x_in_middel/testFunction1.pdf} 
+ \caption{1-D line search based on the Newton-Raphson Method evaluated by first example function}
+ \label{fig:alg1test1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm1/x_in_middel/testFunction2.pdf} 
+ \caption{1-D line search based on the Newton-Raphson Method evaluated by second example function}
+ \label{fig:alg1test2}
+\end{figure}
+
+Figure \ref{fig:alg1test1} and Figure \ref{fig:alg1test2} show that this algorithm manages to successfully converge near or on the optimal point. Note for both test functions, only three iterations are required.
+
+\newpage
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm1/x_in_middel/testFunction3.pdf} 
+ \caption{1-D line search based on the Newton-Raphson Method evaluated by third example function}
+ \label{fig:alg1test3}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm1/x_in_middel/testFunction4.pdf} 
+ \caption{1-D line search based on the Newton-Raphson Method evaluated by fourth example function}
+ \label{fig:alg1test4}
+\end{figure}
+
+Figure \ref{fig:alg1test3} indicates that this algorithm manages to successfully converge near or on the optimal point. Note that only two iterations are required to adhere to the tolerance value. From Figure \ref{fig:alg1test4}, it is clear that the algorithm did not converge to a solution. This is due to the fact that the initial starting solution is not chosen adequately for this particular problem. 
+
+\newpage
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm1/x90percentofb/testFunction4.pdf} 
+ \caption{1-D line search based on the Newton-Raphson Method evaluated by fourth example function, with a new starting solution selected}
+ \label{fig:alg1test4B}
+\end{figure}
+
+This time, from Figure \ref{fig:alg1test4B}, it is visible that the algorithm successfully converged to a solution. This is because a different starting estimated solution is assumed compared to the estimated starting solution of Figure \ref{fig:alg1test4}.
+
+\newpage
+\subsection{Modification of the Newton-Raphson was discussed in class}
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm2/x90percentofb/testFunction1.pdf} 
+ \caption{Modification of the Newton-Raphson evaluated by first example function}
+ \label{fig:alg2test1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm2/x90percentofb/testFunction2.pdf} 
+ \caption{Modification of the Newton-Raphson evaluated by second example function}
+ \label{fig:alg2test2}
+\end{figure}
+
+Figure \ref{fig:alg2test1} and Figure \ref{fig:alg2test2} show that this algorithm manages to successfully converge near or on the optimal point. Note for both test functions, only three iterations are required.
+
+\newpage
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm2/x90percentofb/testFunction3.pdf} 
+ \caption{Modification of the Newton-Raphson evaluated by third example function}
+ \label{fig:alg2test3}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm2/x90percentofb/testFunction4.pdf} 
+ \caption{Modification of the Newton-Raphson evaluated by fourth example function}
+ \label{fig:alg2test4}
+\end{figure}
+
+Figure \ref{fig:alg2test3} indicates that this algorithm manages to successfully converge near or on the optimal point. Note that only two iterations are required to adhere to the tolerance value. From Figure \ref{fig:alg2test4}, it is clear that the algorithm did not converge to a solution. This is due to the fact that the initial starting solution is not chosen adequately for this particular problem. 
+
+\newpage
+\subsection{Golden Section Method}
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm3/testFunction1.pdf} 
+ \caption{Golden Section Method evaluated by first example function}
+ \label{fig:alg3test1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm3/testFunction2.pdf} 
+ \caption{Golden Section Method evaluated by second example function}
+ \label{fig:alg3test2}
+\end{figure}
+
+Figure \ref{fig:alg3test1} and Figure \ref{fig:alg3test2} show that this algorithm manages to successfully converge near or on the optimal point. Note that much more iterations are required to achieve the equal accuracy of solutions as indicated by Figure \ref{fig:alg1test1} and Figure \ref{fig:alg1test2}.
+
+\newpage
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm3/testFunction3.pdf} 
+ \caption{Golden Section Method evaluated by third example function}
+ \label{fig:alg3test3}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm3/testFunction4.pdf} 
+ \caption{Golden Section Method evaluated by fourth example function}
+ \label{fig:alg3test4}
+\end{figure}
+
+Figure \ref{fig:alg3test3} indicates that this algorithm manages to successfully converge near or on the optimal point. It is also shown that the number of iterations are limited to 10 for the third test function. From Figure \ref{fig:alg3test4}, it is clear that the algorithm did converge to a solution. Notice that 31 iterations are required to obtain the solution, as compared to Figure \ref{fig:alg1test4B} where only 5 iterations are required (given the starting point chosen for that example).
+
+\newpage
+\section{Conclusion}
+
+
+From the results it seems that the PSO algorithm is a handy tool to use when a cost function of 10-20 variables need to be optimized. Some of the example functions in this report, such as the Quadric function are evidently more difficult for the PSO algorithm to solve than for instance the Rosenbrock function. Reasonable solutions could probably still be obtained for a 10-20 dimensional problem but it does not seem that this algorithm would be sufficient for a 30 dimensional problem. It is also noted that an increase of the population size seems to result in better solutions or at least faster convergence to some local minimums. Furthermore, it is interesting to note how sensitive the example problems and the PSO algorithm is toward the inertia factor. A slight increase in the inertia factor often resulted in a diverging solution.
+
+All considered the PSO algorithm is relatively easy to implement and is worth a try to solve a multi-dimensional optimization problem.
+
+\section{Bibliography}
+1. Wilke DN, Kok S, Groenwold AA. Comparison of linear and classical velocity update rules in particle swarm optimization: notes on diversity. International Journal for Numerical Methods in Engineering 2006; 70:962-984.
+
+\end{document}   

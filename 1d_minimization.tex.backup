@@ -1,0 +1,85 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}					%for advanced mathmematical formulas
+\usepackage{graphicx}					%always use this package if you want to insert graphics into your report
+\usepackage{fullpage}
+
+
+
+\graphicspath{{./graphs/algorithm1/}{./graphs/algorithm2/}{./graphs/algorithm3/}{./graphs/*}}
+
+
+% Title Page
+\title{\Huge{One-Dimensional Line Search Methods Assignment}\\[7cm]Advanced Design 814\\[2cm]}
+
+\author{\Large Andreas Joss\\[0.5cm]16450612}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+\newpage
+\section{Introduction}
+This report briefly explains the  three different one-dimensional line search methods which are used for this assignment. Furthermore, the algorithms are implemented in code and the results thereof are shown and discussed. 
+
+\section{Example Functions}
+Example functions are used to evaluate the effectiveness of each algorithm and briefly compare the algorithm results with each other. Each graph displays several parameters for the particular optimization at hand as well as the solution that is found. Each test function has its own specified boundaries and also the tolerance of the accuracy of the desired solution. The following test functions are used:
+\\[0.5cm]
+(i) minimize $F(\lambda) = \lambda^{2} + 2e^{-\lambda} \text{ over } [0,2] \text{ with } \epsilon = 0.01$
+\\[0.5cm]
+(ii) maximize $F(\lambda) = \lambda \text{cos} \lambda \text{ over } [0,\frac{\pi}{2}] \text{ with } \epsilon = 0.001$
+\\[0.5cm]
+(iii) minimize $F(\lambda) = 4(\lambda - 7) / (\lambda^{2} + \lambda - 2) \text{ over } [-1.9,0.9] \text{ with }$ by performing no more than 10 function iterations.
+\\[0.5cm]
+(i) minimize $F(\lambda) = \lambda^{4} + -20\lambda^{3} + 0.1\lambda \text{ over } [0,20] \text{ with } \epsilon = 10^{-5}$
+
+\section{Results}
+The algorithm are programmed in the Python language, due to future work which will also require extensive Python scripting. The Matplotlib library is used to display the results in a neat and informative manner. In each case the green dot indicates the solution that is found by the algorithm.
+
+\newpage
+\subsection{1-D line search based on the Newton-Raphson Method}
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm1/x_in_middel/testFunction1.pdf} 
+ \caption{1-D line search based on the Newton-Raphson Method evaluated by first example function}
+ \label{fig:alg1test1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm1/x_in_middel/testFunction2.pdf} 
+ \caption{1-D line search based on the Newton-Raphson Method evaluated by second example function}
+ \label{fig:alg1test2}
+\end{figure}
+
+Figure \ref{fig:alg1test1} and Figure \ref{fig:alg1test2} show that this algorithm manages to successfully converge near or on the optimal point. Note for both test functions, only three iterations are required.
+
+\newpage
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm1/x_in_middel/testFunction3.pdf} 
+ \caption{1-D line search based on the Newton-Raphson Method evaluated by third example function}
+ \label{fig:alg1test3}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm1/x_in_middel/testFunction4.pdf} 
+ \caption{1-D line search based on the Newton-Raphson Method evaluated by fourth example function}
+ \label{fig:alg1test4}
+\end{figure}
+
+Figure \ref{fig:alg1test3} indicates that this algorithm manages to successfully converge near or on the optimal point. Note that only two iterations are required to adhere to the tolerance value. From Figure \ref{fig:alg1test4}, it is clear that the algorithm did not converge to a solution. This is due to the fact that the initial starting solution is not chosen adequately for this particular problem. 
+
+\newpage
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm1/x90percentofb/testFunction4.pdf} 
+ \caption{1-D line search based on the Newton-Raphson Method evaluated by fourth example function, with a new starting solution selected}
+ \label{fig:alg1test4B}
+\end{figure}
+
+This time, from Figure \ref{fig:alg1test4B}, it is visible that the algorithm successfully converged to a solution. This is because a different starting estimated solution is assumed compared to the estimated starting solution of Figure \ref{fig:alg1test4}.
+
+\end{document}   
