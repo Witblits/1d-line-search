@@ -23,6 +23,53 @@
 \section{Introduction}
 This report briefly explains the  three different one-dimensional line search methods which are used for this assignment. Furthermore, the algorithms are implemented in code and the results thereof are shown and discussed. 
 
+\section{Theory}
+\subsection{Newton-Raphson Method}
+The Newton-Raphson method is derived from the Taylor Series expansion which is used to approximate functions, given a point $x_{0}$. For a function $f(x)$, the approximated function $\hat{f}(x)$ is described as:
+ \begin{equation}\label{eq:1}
+  \hat{f}(x) = f(x_{0}) + \frac{1}{1!} \frac{df}{dx}({x-x_{0}}) + \frac{1}{2!} \frac{d^{2}f}{dx^{2}}(x-x_{0})^{2} + \frac{1}{3!} \frac{d^{3}f}{dx^{3}}(x-x_{0})^{3} +  . . . 
+ \end{equation}
+\\[0.5cm]
+
+If only the second order Taylor expansion is used, thus assuming that the remaining terms become neglectable, the approximation looks as follows:
+ \begin{equation}\label{eq:2}
+  \hat{f}(x) = f(x_{0}) + \frac{1}{1!} \frac{df}{dx}({x-x_{0}}) + \frac{1}{2!} \frac{d^{2}f}{dx^{2}}(x-x_{0})^{2}
+ \end{equation}
+\\[0.5cm]
+
+To optimize the approximated function $\hat{f}(x)$, the approximated function is differentiated and equated to zero:
+ \begin{equation}\label{eq:3}
+  \frac{d}{dx}(\hat{f}(x)) = \frac{df}{dx}(x_{0}) + \frac{d^{2}f}{dx^{2}}({x-x_{0}})
+ \end{equation}
+\\[0.5cm]
+
+The Newton-Raphson method is described as:
+ \begin{equation}\label{eq:4}
+  x^{*} \approx x^{k+1} = x^{k} - \frac{f'(x^{k})}{f''(x^{k})}
+ \end{equation}
+\\[0.5cm]
+
+\subsection{Newton-Raphson Method Modified}
+The purpose of this modification is to ensure that a solution is found for the given problem function, for cases where the normal Newton-Raphson method would diverge. This modified method might require more iterations than the unmodified method, nevertheless convergence is more likely.
+\\[0.5cm]
+The modified Newton-Raphson method is described as:
+ \begin{equation}\label{eq:2}
+  x^{*} \approx x^{k+1} = x^{k} - \frac{f'(x^{k})}{\text{max}(f''(x^{k}),\epsilon)}
+ \end{equation}
+\\[0.1cm]
+
+For the denominator of Equation \ref{eq:2}, the maximum value is selected being either the second derivative of the function at the current solution, or a value $\epsilon$ which is normally selected in the order of $\epsilon = 10^{-6}$. One problem arises in the unmodified Newton-Raphson method (Equation \ref{eq:1}) when the denominator is equal to zero or very close to zero. This causes the newly calculated solution $x^{k+1}$ to assume a value placed very far, or even infinitely far, from the previous solution $^{k}$, which as a result makes it very hard for the unmodified Newton-Raphson method to converge. The modification of the Newton-Raphson method ensures that the denominator is at least as large as $\epsilon$. The second problem of the unmodified method, is when the second derivative is found to be $f^{''}(x^{k}) < 0$. This means that the function is non-convex (concave) in that region and that the next solution will move closer to a non-converging region. The modified method, would then prevent the next solution to move into the aforementioned direction, by replacing $f^{''}(x^{k})$ with a small positive value $\epsilon$.
+
+a''
+\subsection{Golden Section Method}
+
+\section{Selecting the Appropriate Method}
+\subsection{Newton-Raphson Methods}
+From Equation \ref{eq:1} and \ref{eq:2} it is clear that 1st and 2nd order derivative information of the objective test function is required to use the method. Depending on the problem at hand, it is up to the user to decide how practical this method is regarding the expensiveness to obtain this information. Even if the 1st and 2nd order derivatives are obtained, the method could still struggle to deliver a global minimum due to its susceptibility to noise. For the modified Newton-Raphson method, values for $\epsilon$ can be chosen experimentally for specific problems. If the method still diverges, then a larger $\epsilon$ value could be selected.
+
+\subsection{Golden Section Method}
+From Equation \ref{eq:3} it is seen that only zero order information is required from the objective test function. This is useful when the 1st and 2nd order derivative information is hard and expensive to obtain, but zero order information is more accessible. This method is consequently much less susceptible to noise.
+
 \section{Example Functions}
 Example functions are used to evaluate the effectiveness of each algorithm and briefly compare the algorithm results with each other. Each graph displays several parameters for the particular optimization at hand as well as the solution that is found. Each test function has its own specified boundaries and also the tolerance of the accuracy of the desired solution. The following test functions are used:
 \\[0.5cm]
@@ -81,5 +128,86 @@ Figure \ref{fig:alg1test3} indicates that this algorithm manages to successfully
 \end{figure}
 
 This time, from Figure \ref{fig:alg1test4B}, it is visible that the algorithm successfully converged to a solution. This is because a different starting estimated solution is assumed compared to the estimated starting solution of Figure \ref{fig:alg1test4}.
+
+\newpage
+\subsection{Modification of the Newton-Raphson was discussed in class}
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm2/x90percentofb/testFunction1.pdf} 
+ \caption{Modification of the Newton-Raphson evaluated by first example function}
+ \label{fig:alg2test1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm2/x90percentofb/testFunction2.pdf} 
+ \caption{Modification of the Newton-Raphson evaluated by second example function}
+ \label{fig:alg2test2}
+\end{figure}
+
+Figure \ref{fig:alg2test1} and Figure \ref{fig:alg2test2} show that this algorithm manages to successfully converge near or on the optimal point. Note for both test functions, only three iterations are required.
+
+\newpage
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm2/x90percentofb/testFunction3.pdf} 
+ \caption{Modification of the Newton-Raphson evaluated by third example function}
+ \label{fig:alg2test3}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm2/x90percentofb/testFunction4.pdf} 
+ \caption{Modification of the Newton-Raphson evaluated by fourth example function}
+ \label{fig:alg2test4}
+\end{figure}
+
+Figure \ref{fig:alg2test3} indicates that this algorithm manages to successfully converge near or on the optimal point. Note that only two iterations are required to adhere to the tolerance value. From Figure \ref{fig:alg2test4}, it is clear that the algorithm did not converge to a solution. This is due to the fact that the initial starting solution is not chosen adequately for this particular problem. 
+
+\newpage
+\subsection{Golden Section Method}
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm3/testFunction1.pdf} 
+ \caption{Golden Section Method evaluated by first example function}
+ \label{fig:alg3test1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm3/testFunction2.pdf} 
+ \caption{Golden Section Method evaluated by second example function}
+ \label{fig:alg3test2}
+\end{figure}
+
+Figure \ref{fig:alg3test1} and Figure \ref{fig:alg3test2} show that this algorithm manages to successfully converge near or on the optimal point. Note that much more iterations are required to achieve the equal accuracy of solutions as indicated by Figure \ref{fig:alg1test1} and Figure \ref{fig:alg1test2}.
+
+\newpage
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm3/testFunction3.pdf} 
+ \caption{Golden Section Method evaluated by third example function}
+ \label{fig:alg3test3}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=0.55]{./graphs/algorithm3/testFunction4.pdf} 
+ \caption{Golden Section Method evaluated by fourth example function}
+ \label{fig:alg3test4}
+\end{figure}
+
+Figure \ref{fig:alg3test3} indicates that this algorithm manages to successfully converge near or on the optimal point. It is also shown that the number of iterations are limited to 10 for the third test function. From Figure \ref{fig:alg3test4}, it is clear that the algorithm did converge to a solution. Notice that 31 iterations are required to obtain the solution, as compared to Figure \ref{fig:alg1test4B} where only 5 iterations are required (given the starting point chosen for that example).
+
+\newpage
+\section{Conclusion}
+
+
+From the results it seems that the PSO algorithm is a handy tool to use when a cost function of 10-20 variables need to be optimized. Some of the example functions in this report, such as the Quadric function are evidently more difficult for the PSO algorithm to solve than for instance the Rosenbrock function. Reasonable solutions could probably still be obtained for a 10-20 dimensional problem but it does not seem that this algorithm would be sufficient for a 30 dimensional problem. It is also noted that an increase of the population size seems to result in better solutions or at least faster convergence to some local minimums. Furthermore, it is interesting to note how sensitive the example problems and the PSO algorithm is toward the inertia factor. A slight increase in the inertia factor often resulted in a diverging solution.
+
+All considered the PSO algorithm is relatively easy to implement and is worth a try to solve a multi-dimensional optimization problem.
+
+\section{Bibliography}
+1. Wilke DN, Kok S, Groenwold AA. Comparison of linear and classical velocity update rules in particle swarm optimization: notes on diversity. International Journal for Numerical Methods in Engineering 2006; 70:962-984.
 
 \end{document}   
