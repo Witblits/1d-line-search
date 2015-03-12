@@ -20,9 +20,10 @@ L = b - a		#Length of line search is conducted on
 r = 0.618034		#golden ratio
 algorithm_string = ""
 example_string = ""
-graph = []
-graph1 = []
-graph2 = []
+graph0order = []
+graph1order = []
+graph2order = []
+graph_all_solutions = [] #[i,x,f(x)]
 x_initial = 0
 ##########################################################################################
 
@@ -101,7 +102,7 @@ L = b - a		#Length of line search is conducted on
 ###OPTIMIZATION METHODS
 ##########################################################################################
 ### 1-D line search based on the Newton-Raphson Method
-def lineSearchNewtonRapshon(a,b):
+def newtonRapshon(a,b):
   solution = pl.np.zeros((3,1))
   solution_found = False
   i = 0
@@ -110,6 +111,7 @@ def lineSearchNewtonRapshon(a,b):
   x = x_old
   global x_initial
   x_initial = x_old
+  graph_all_solutions.append([i,x,testFunction(0,x)])			#can remove this for computational speed improvement
   #print "x_old: %.3f" %x_old
   #print "x    : %.3f" %x
   
@@ -117,11 +119,13 @@ def lineSearchNewtonRapshon(a,b):
     x_old = x
     x = x_old - (testFunction(1,x_old)/testFunction(2,x_old))
     i = i + 1
+    graph_all_solutions.append([i,x,testFunction(0,x)])			#can remove this for computational speed improvement
     #print "pl.np.abs(x-x_old) : %.3f" %pl.np.abs(x-x_old)
     #print "i	: %d" %i
     #print "x_old: %.3f" %x_old
     #print "x    : %.3f" %x
     #print "f(x) : %.3f" %testFunction(0,x_old)
+    
   
   solution[0] = x
   solution[1] = testFunction(0,x)
@@ -133,10 +137,10 @@ def lineSearchNewtonRapshon(a,b):
 def modifiedNewtonRapshon(a,b,L,r):
   solution = pl.np.zeros((3,1))
   solution_found = False
-  epsilon1 = 1e-5
+  epsilon1 = 1e-6	#10^(-6)
   i = 0
-  #x_old = (b+a)/2 		#assume a solution nearby (works good for all test functions except Test Function 4 which does not converge)
-  x_old = 0.9*b			#works for all test functions (just requires more iterations for some)
+  x_old = (b+a)/2 		#assume a solution nearby (works good for all test functions except Test Function 4 which does not converge)
+  #x_old = 0.9*b			#works for all test functions (just requires more iterations for some)
   x = x_old
   global x_initial
   x_initial = x_old
@@ -145,23 +149,20 @@ def modifiedNewtonRapshon(a,b,L,r):
   
   while (pl.np.abs(x-x_old) > epsilon1) or (i == 0):
     x_old = x
-    numerator = testFunction(1,x_old)
-    denominator = maximize_f2ndDerivative(x_old,epsilon1,r,L)
-    x = x_old - numerator/denominator		#numerator/denominator
+    x = x_old - (testFunction(1,x_old)/max(testFunction(2,x_old),epsilon1))
     i = i + 1
     #print "pl.np.abs(x-x_old) : %.3f" %pl.np.abs(x-x_old)
     #print "i	: %d" %i
     #print "x_old: %.3f" %x_old
     #print "x    : %.3f" %x
     #print "f(x) : %.3f" %testFunction(0,x_old)
+    
+    
   
   solution[0] = x
   solution[1] = testFunction(0,x)
   solution[2] = i
   solution_found = True 
-  return solution  
-  
-  
   return solution
 
 ### Golden Section Method
@@ -196,41 +197,6 @@ def goldenSection(a,b,L,r):
       solution_found = True
       return solution
 ##########################################################################################
-
-###ADDITIONAL HELPER FUNCTION
-def maximize_f2ndDerivative(x_old,epsilon,r,L):
-  #use goldenSection method to determine maximum point on 2nd derivative function within range
-  #goldenSection is selected instead of Newton-Raphsody method because we assume that we only have
-  #a twice differentiable (smooth) f(x) available. Thus we cant apply Newton-Raphsody to a function
-  #which is already the 2nd derivative.
-  a = x_old - epsilon
-  b = x_old + epsilon
-  L = b - a
-  solution = pl.np.zeros((3,1))
-  i = 0
-  lambda1 = a + pl.np.power(r,2)*L
-  lambda2 = a + r*L
-  solution_found = False
-  order = 2			#this is changed to 2 because we are already working with the 2nd order function
-  
-  while(solution_found == False):
-    f1 = testFunction(order,lambda1)
-    f2 = testFunction(order,lambda2)
-    i = i + 1
-    
-    if(f1 > f2):
-      a = lambda1
-      lambda1 = lambda2
-      L = b - a
-      lambda2 = a + r*L
-    elif (f1 < f2):
-      b = lambda2
-      lambda2 = lambda1
-      L = b - a
-      lambda1 = a + pl.np.power(r,2)*L
-    
-    if L < epsilon or (i == 10 and args.choice == 3):
-      return testFunction(order,(b+a)/2)
 
 
 ###SYMBOLIC TEST_FUNCTIONS f(x), f'(x), f''(x)
@@ -314,7 +280,7 @@ def testFunction(order,lambdax):
 ###RUN SELECTED ALGORITHM
 ##########################################################################################  
 if args.algorithm == 1:
-  sol = lineSearchNewtonRapshon(a,b)
+  sol = newtonRapshon(a,b)
   algorithm_string = "1-D line search based on the Newton-Raphson Method"
 elif args.algorithm == 2:
   sol = modifiedNewtonRapshon(a,b,L,r)
@@ -344,20 +310,25 @@ j = a
 k = 0
 while k < 50:
   if args.choice == 2:
-    graph.append(-testFunction(0,j))
+    graph0order.append(-testFunction(0,j))
   else:
-    graph.append(testFunction(0,j))
+    graph0order.append(testFunction(0,j))
     
-  #graph1.append(testFunction(1,j))
-  #graph2.append(testFunction(2,j))  
+  #graph1order.append(testFunction(1,j))
+  #graph2order.append(testFunction(2,j))  
     
   j = j + L/50.0
   k = k + 1
   
 
-pl.plot(pl.np.arange(a,b,L/50.0),graph)
-#pl.plot(pl.np.arange(a,b,L/50.0),graph1)
-#pl.plot(pl.np.arange(a,b,L/50.0),graph2)
+pl.plot(pl.np.arange(a,b,L/50.0),graph0order)
+#pl.plot(pl.np.arange(a,b,L/50.0),graph1order)
+#pl.plot(pl.np.arange(a,b,L/50.0),graph2order)
+
+#Plot informative data
+#for i in range (0,sol[2]): #number of iterations completed
+  #pl.plot(graph_all_solutions[i][1],graph_all_solutions[i][2],'r.', markersize=10.0)
+
 if args.choice == 2:
   pl.figtext(0.50,0.35, "Total iterations: %d\nLambda solution: %.3f\nf(lambda solution): %.3f\na: %.2f\nb: %.2f\nepsilon: %.6f\nNewton-Raphson initial lambda value: %.3f" %(sol[2],sol[0],sol[1],a,b,epsilon1,x_initial),fontsize=10, bbox=dict(facecolor = 'white', alpha=1, linewidth = 1, edgecolor = 'black'), horizontalalignment = 'center',verticalalignment='top')
   pl.plot(sol[0], -sol[1], 'g.', markersize=20.0)			#adds a dot where the solution was found

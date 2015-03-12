@@ -25,29 +25,13 @@ This report briefly explains the  three different one-dimensional line search me
 
 \section{Theory}
 \subsection{Newton-Raphson Method}
-The Newton-Raphson method is derived from the Taylor Series expansion which is used to approximate functions, given a point $x_{0}$. For a function $f(x)$, the approximated function $\hat{f}(x)$ is described as:
- \begin{equation}\label{eq:1}
-  \hat{f}(x) = f(x_{0}) + \frac{1}{1!} \frac{df}{dx}({x-x_{0}}) + \frac{1}{2!} \frac{d^{2}f}{dx^{2}}(x-x_{0})^{2} + \frac{1}{3!} \frac{d^{3}f}{dx^{3}}(x-x_{0})^{3} +  . . . 
- \end{equation}
-\\[0.5cm]
-
-If only the second order Taylor expansion is used, thus assuming that the remaining terms become neglectable, the approximation looks as follows:
- \begin{equation}\label{eq:2}
-  \hat{f}(x) = f(x_{0}) + \frac{1}{1!} \frac{df}{dx}({x-x_{0}}) + \frac{1}{2!} \frac{d^{2}f}{dx^{2}}(x-x_{0})^{2}
- \end{equation}
-\\[0.5cm]
-
-To optimize the approximated function $\hat{f}(x)$, the approximated function is differentiated and equated to zero:
- \begin{equation}\label{eq:3}
-  \frac{d}{dx}(\hat{f}(x)) = \frac{df}{dx}(x_{0}) + \frac{d^{2}f}{dx^{2}}({x-x_{0}})
- \end{equation}
-\\[0.5cm]
-
-The Newton-Raphson method is described as:
+The Newton-Raphson method can be derived from the Taylor Series expansion which is used to approximate functions. The Newton-Raphson method is described as:
  \begin{equation}\label{eq:4}
   x^{*} \approx x^{k+1} = x^{k} - \frac{f'(x^{k})}{f''(x^{k})}
  \end{equation}
 \\[0.5cm]
+
+where $x^{k+1}$ describes the next solution and $x^{k}$ describes the present solution.
 
 \subsection{Newton-Raphson Method Modified}
 The purpose of this modification is to ensure that a solution is found for the given problem function, for cases where the normal Newton-Raphson method would diverge. This modified method might require more iterations than the unmodified method, nevertheless convergence is more likely.
@@ -60,8 +44,10 @@ The modified Newton-Raphson method is described as:
 
 For the denominator of Equation \ref{eq:2}, the maximum value is selected being either the second derivative of the function at the current solution, or a value $\epsilon$ which is normally selected in the order of $\epsilon = 10^{-6}$. One problem arises in the unmodified Newton-Raphson method (Equation \ref{eq:1}) when the denominator is equal to zero or very close to zero. This causes the newly calculated solution $x^{k+1}$ to assume a value placed very far, or even infinitely far, from the previous solution $^{k}$, which as a result makes it very hard for the unmodified Newton-Raphson method to converge. The modification of the Newton-Raphson method ensures that the denominator is at least as large as $\epsilon$. The second problem of the unmodified method, is when the second derivative is found to be $f^{''}(x^{k}) < 0$. This means that the function is non-convex (concave) in that region and that the next solution will move closer to a non-converging region. The modified method, would then prevent the next solution to move into the aforementioned direction, by replacing $f^{''}(x^{k})$ with a small positive value $\epsilon$.
 
-a''
 \subsection{Golden Section Method}
+For this method to be useful, it is assumed that the objective function $f(x)$ has a minimum within an interval $[a,b]$ (which is selected from user experience), and that $f(x)$ is descending for $x < x^*$ and $f(x)$ is ascending for $x > x^*$. New points $x_{1}$ and $x_{2}$ are selected when certain criteria are met.
+
+If $f(x_{2} > f(x_{1}$ then the new interval becomes $[a,x_{2}]$ with $b$ obtaining the new boundary value, otherwise the new interval will be $[x_{1},b]$ with $a$ obtaining the new boundary value. Thus, the interval is reduced until $x^{*}$ is reached within a prescribed accuracy. The ratio by which the interval is reduced, is determined by the golden ratio $r=0.618034$. The algorithm steps are explained in full by [1:37].
 
 \section{Selecting the Appropriate Method}
 \subsection{Newton-Raphson Methods}

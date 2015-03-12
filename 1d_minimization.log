@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/TeX Live for SUSE Linux) (format=pdflatex 2015.1.13)  12 MAR 2015 11:49
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/TeX Live for SUSE Linux) (format=pdflatex 2015.1.13)  12 MAR 2015 12:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -335,7 +335,7 @@ Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip46
 ) (./1d_minimization.aux
 
-LaTeX Warning: Label `eq:1' multiply defined.
+LaTeX Warning: Label `eq:2' multiply defined.
 
 )
 \openout1 = `1d_minimization.aux'.
@@ -420,46 +420,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--33
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--39
+Underfull \hbox (badness 10000) in paragraph at lines 42--44
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--45
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--51
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--60
-
- []
-
-[2]
-
-LaTeX Warning: Reference `eq:3' on page 3 undefined on input line 71.
-
-[3]
-<./graphs/algorithm1/x_in_middel/testFunction1.pdf, id=23, 615.76302pt x 409.42
+[2] [3]
+<./graphs/algorithm1/x_in_middel/testFunction1.pdf, id=22, 615.76302pt x 409.42
 021pt>
 File: ./graphs/algorithm1/x_in_middel/testFunction1.pdf Graphic file (type pdf)
 
  <use ./graphs/algorithm1/x_in_middel/testFunction1.pdf>
 Package pdftex.def Info: ./graphs/algorithm1/x_in_middel/testFunction1.pdf used
- on input line 91.
+ on input line 77.
 (pdftex.def)             Requested size: 338.67072pt x 225.18181pt.
 
-<./graphs/algorithm1/x_in_middel/testFunction2.pdf, id=24, 615.65323pt x 409.42
+<./graphs/algorithm1/x_in_middel/testFunction2.pdf, id=23, 615.65323pt x 409.42
 021pt>
 File: ./graphs/algorithm1/x_in_middel/testFunction2.pdf Graphic file (type pdf)
 
  <use ./graphs/algorithm1/x_in_middel/testFunction2.pdf>
 Package pdftex.def Info: ./graphs/algorithm1/x_in_middel/testFunction2.pdf used
- on input line 98.
+ on input line 84.
 (pdftex.def)             Requested size: 338.61032pt x 225.18181pt.
  [4 <./graphs/algorithm1/x_in_middel/testFunction1.pdf> <./graphs/algorithm1/x_
 in_middel/testFunction2.pdf
@@ -468,22 +449,22 @@ pdfTeX warning: /usr/bin/pdflatex (file ./graphs/algorithm1/x_in_middel/testFun
 ction2.pdf): PDF inclusion: multiple pdfs with page group included in a single 
 page
 >]
-<./graphs/algorithm1/x_in_middel/testFunction3.pdf, id=122, 615.95122pt x 409.4
+<./graphs/algorithm1/x_in_middel/testFunction3.pdf, id=121, 615.95122pt x 409.4
 2021pt>
 File: ./graphs/algorithm1/x_in_middel/testFunction3.pdf Graphic file (type pdf)
 
  <use ./graphs/algorithm1/x_in_middel/testFunction3.pdf>
 Package pdftex.def Info: ./graphs/algorithm1/x_in_middel/testFunction3.pdf used
- on input line 108.
+ on input line 94.
 (pdftex.def)             Requested size: 338.77422pt x 225.18181pt.
 
-<./graphs/algorithm1/x_in_middel/testFunction4.pdf, id=123, 616.29625pt x 409.4
+<./graphs/algorithm1/x_in_middel/testFunction4.pdf, id=122, 616.29625pt x 409.4
 2021pt>
 File: ./graphs/algorithm1/x_in_middel/testFunction4.pdf Graphic file (type pdf)
 
  <use ./graphs/algorithm1/x_in_middel/testFunction4.pdf>
 Package pdftex.def Info: ./graphs/algorithm1/x_in_middel/testFunction4.pdf used
- on input line 115.
+ on input line 101.
 (pdftex.def)             Requested size: 338.96397pt x 225.18181pt.
  [5 <./graphs/algorithm1/x_in_middel/testFunction3.pdf> <./graphs/algorithm1/x_
 in_middel/testFunction4.pdf
@@ -492,31 +473,31 @@ pdfTeX warning: /usr/bin/pdflatex (file ./graphs/algorithm1/x_in_middel/testFun
 ction4.pdf): PDF inclusion: multiple pdfs with page group included in a single 
 page
 >]
-<./graphs/algorithm1/x90percentofb/testFunction4.pdf, id=222, 616.29625pt x 409
+<./graphs/algorithm1/x90percentofb/testFunction4.pdf, id=221, 616.29625pt x 409
 .42021pt>
 File: ./graphs/algorithm1/x90percentofb/testFunction4.pdf Graphic file (type pd
 f)
  <use ./graphs/algorithm1/x90percentofb/testFunction4.pdf>
 Package pdftex.def Info: ./graphs/algorithm1/x90percentofb/testFunction4.pdf us
-ed on input line 125.
+ed on input line 111.
 (pdftex.def)             Requested size: 338.96397pt x 225.18181pt.
  [6 <./graphs/algorithm1/x90percentofb/testFunction4.pdf>]
-<./graphs/algorithm2/x90percentofb/testFunction1.pdf, id=275, 643.09952pt x 409
+<./graphs/algorithm2/x90percentofb/testFunction1.pdf, id=274, 643.09952pt x 409
 .42021pt>
 File: ./graphs/algorithm2/x90percentofb/testFunction1.pdf Graphic file (type pd
 f)
  <use ./graphs/algorithm2/x90percentofb/testFunction1.pdf>
 Package pdftex.def Info: ./graphs/algorithm2/x90percentofb/testFunction1.pdf us
-ed on input line 136.
+ed on input line 122.
 (pdftex.def)             Requested size: 353.70583pt x 225.18181pt.
 
-<./graphs/algorithm2/x90percentofb/testFunction2.pdf, id=276, 642.98973pt x 409
+<./graphs/algorithm2/x90percentofb/testFunction2.pdf, id=275, 642.98973pt x 409
 .42021pt>
 File: ./graphs/algorithm2/x90percentofb/testFunction2.pdf Graphic file (type pd
 f)
  <use ./graphs/algorithm2/x90percentofb/testFunction2.pdf>
 Package pdftex.def Info: ./graphs/algorithm2/x90percentofb/testFunction2.pdf us
-ed on input line 143.
+ed on input line 129.
 (pdftex.def)             Requested size: 353.64545pt x 225.18181pt.
  [7 <./graphs/algorithm2/x90percentofb/testFunction1.pdf> <./graphs/algorithm2/
 x90percentofb/testFunction2.pdf
@@ -525,22 +506,22 @@ pdfTeX warning: /usr/bin/pdflatex (file ./graphs/algorithm2/x90percentofb/testF
 unction2.pdf): PDF inclusion: multiple pdfs with page group included in a singl
 e page
 >]
-<./graphs/algorithm2/x90percentofb/testFunction3.pdf, id=374, 643.28772pt x 409
+<./graphs/algorithm2/x90percentofb/testFunction3.pdf, id=373, 643.28772pt x 409
 .42021pt>
 File: ./graphs/algorithm2/x90percentofb/testFunction3.pdf Graphic file (type pd
 f)
  <use ./graphs/algorithm2/x90percentofb/testFunction3.pdf>
 Package pdftex.def Info: ./graphs/algorithm2/x90percentofb/testFunction3.pdf us
-ed on input line 153.
+ed on input line 139.
 (pdftex.def)             Requested size: 353.80934pt x 225.18181pt.
 
-<./graphs/algorithm2/x90percentofb/testFunction4.pdf, id=375, 643.63275pt x 409
+<./graphs/algorithm2/x90percentofb/testFunction4.pdf, id=374, 643.63275pt x 409
 .42021pt>
 File: ./graphs/algorithm2/x90percentofb/testFunction4.pdf Graphic file (type pd
 f)
  <use ./graphs/algorithm2/x90percentofb/testFunction4.pdf>
 Package pdftex.def Info: ./graphs/algorithm2/x90percentofb/testFunction4.pdf us
-ed on input line 160.
+ed on input line 146.
 (pdftex.def)             Requested size: 353.9991pt x 225.18181pt.
  [8 <./graphs/algorithm2/x90percentofb/testFunction3.pdf> <./graphs/algorithm2/
 x90percentofb/testFunction4.pdf
@@ -548,40 +529,40 @@ x90percentofb/testFunction4.pdf
 pdfTeX warning: /usr/bin/pdflatex (file ./graphs/algorithm2/x90percentofb/testF
 unction4.pdf): PDF inclusion: multiple pdfs with page group included in a singl
 e page
->] <./graphs/algorithm3/testFunction1.pdf, id=474, 509.74345pt x 409.42021pt>
+>] <./graphs/algorithm3/testFunction1.pdf, id=473, 509.74345pt x 409.42021pt>
 File: ./graphs/algorithm3/testFunction1.pdf Graphic file (type pdf)
 
 <use ./graphs/algorithm3/testFunction1.pdf>
 Package pdftex.def Info: ./graphs/algorithm3/testFunction1.pdf used on input li
-ne 171.
+ne 157.
 (pdftex.def)             Requested size: 280.35976pt x 225.18181pt.
 
-<./graphs/algorithm3/testFunction2.pdf, id=475, 509.46114pt x 409.42021pt>
+<./graphs/algorithm3/testFunction2.pdf, id=474, 509.46114pt x 409.42021pt>
 File: ./graphs/algorithm3/testFunction2.pdf Graphic file (type pdf)
 
 <use ./graphs/algorithm3/testFunction2.pdf>
 Package pdftex.def Info: ./graphs/algorithm3/testFunction2.pdf used on input li
-ne 178.
+ne 164.
 (pdftex.def)             Requested size: 280.2045pt x 225.18181pt.
  [9 <./graphs/algorithm3/testFunction1.pdf> <./graphs/algorithm3/testFunction2.
 pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./graphs/algorithm3/testFunction2.pdf):
  PDF inclusion: multiple pdfs with page group included in a single page
->] <./graphs/algorithm3/testFunction3.pdf, id=575, 512.64491pt x 409.42021pt>
+>] <./graphs/algorithm3/testFunction3.pdf, id=574, 512.64491pt x 409.42021pt>
 File: ./graphs/algorithm3/testFunction3.pdf Graphic file (type pdf)
 
 <use ./graphs/algorithm3/testFunction3.pdf>
 Package pdftex.def Info: ./graphs/algorithm3/testFunction3.pdf used on input li
-ne 188.
+ne 174.
 (pdftex.def)             Requested size: 281.95557pt x 225.18181pt.
 
-<./graphs/algorithm3/testFunction4.pdf, id=576, 536.43692pt x 409.42021pt>
+<./graphs/algorithm3/testFunction4.pdf, id=575, 536.43692pt x 409.42021pt>
 File: ./graphs/algorithm3/testFunction4.pdf Graphic file (type pdf)
 
 <use ./graphs/algorithm3/testFunction4.pdf>
 Package pdftex.def Info: ./graphs/algorithm3/testFunction4.pdf used on input li
-ne 195.
+ne 181.
 (pdftex.def)             Requested size: 295.0412pt x 225.18181pt.
  [10 <./graphs/algorithm3/testFunction3.pdf> <./graphs/algorithm3/testFunction4
 .pdf
@@ -590,33 +571,29 @@ pdfTeX warning: /usr/bin/pdflatex (file ./graphs/algorithm3/testFunction4.pdf):
  PDF inclusion: multiple pdfs with page group included in a single page
 >] [11] (./1d_minimization.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2392 strings out of 493315
- 32437 string characters out of 6145893
- 95479 words of memory out of 5000000
- 5810 multiletter control sequences out of 15000+600000
- 9322 words of font info for 34 fonts, out of 8000000 for 9000
+ 2390 strings out of 493315
+ 32416 string characters out of 6145893
+ 95495 words of memory out of 5000000
+ 5809 multiletter control sequences out of 15000+600000
+ 9014 words of font info for 33 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  37i,7n,23p,1176b,240s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf
-/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf/fonts/type1/public
-/amsfonts/cm/cmmi10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi7.
-pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texm
-f/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf/fonts/type1/public
-/amsfonts/cm/cmr17.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr7.pf
-b></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf
-/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf/fonts/type1/public/
-amsfonts/cm/cmsy7.pfb>
-Output written on 1d_minimization.pdf (11 pages, 297502 bytes).
+</usr/share/texmf/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf/fonts/type1/public
+/amsfonts/cm/cmmi7.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr10.p
+fb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf
+/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf/fonts/type1/public/
+amsfonts/cm/cmr7.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmsy10.pf
+b></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texmf/
+fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on 1d_minimization.pdf (11 pages, 288570 bytes).
 PDF statistics:
- 719 PDF objects out of 1000 (max. 8388607)
- 131 compressed objects within 2 object streams
+ 715 PDF objects out of 1000 (max. 8388607)
+ 128 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  66 words of extra memory for PDF output out of 10000 (max. 10000000)
 
