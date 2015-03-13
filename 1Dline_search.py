@@ -33,8 +33,8 @@ x_initial = 0
 parser = argparse.ArgumentParser(description="Line Search Algorithms",formatter_class=argparse.RawTextHelpFormatter)
 
 parser.add_argument("algorithm", help="Select algorithm type:\n"+
-		    "1 - 1-D line search based on the Newton-Raphson Method\n"+
-		    "2 - Modification of the Newton-Raphson we discussed in class\n"+
+		    "1 - Newton-Raphson Method\n"+
+		    "2 - Modification of the Newton-Raphson Method\n"+
 		    "3 - Golden Section Method\n\n", type=int, choices=[1,2,3])					#add a new POSITIONAL argument with a help message included
 
 parser.add_argument("choice", help="Select example function to test the Line Search Algorithms on:\n"+
@@ -281,10 +281,10 @@ def testFunction(order,lambdax):
 ##########################################################################################  
 if args.algorithm == 1:
   sol = newtonRapshon(a,b)
-  algorithm_string = "1-D line search based on the Newton-Raphson Method"
+  algorithm_string = "Newton-Raphson Method"
 elif args.algorithm == 2:
   sol = modifiedNewtonRapshon(a,b,L,r)
-  algorithm_string = "Modification of the Newton-Raphson we discussed in class"
+  algorithm_string = "Modification of the Newton-Raphson Method"
 elif args.algorithm == 3:
   sol = goldenSection(a,b,L,r)
   algorithm_string = "Golden Section Method"
@@ -315,13 +315,19 @@ while k < 50:
     graph0order.append(testFunction(0,j))
     
   #graph1order.append(testFunction(1,j))
-  #graph2order.append(testFunction(2,j))  
+  graph2order.append(testFunction(2,j))  
+    
+  #if(graph2order[i] < 0):
+    #pl.plot(pl.np.arange(a,b,L/50.0),graph0order, 'r.')
+  #else:
+    #pl.plot(pl.np.arange(a,b,L/50.0),graph0order)    
     
   j = j + L/50.0
   k = k + 1
   
+pl.plot(pl.np.arange(a,b,L/50.0),graph0order)  
 
-pl.plot(pl.np.arange(a,b,L/50.0),graph0order)
+
 #pl.plot(pl.np.arange(a,b,L/50.0),graph1order)
 #pl.plot(pl.np.arange(a,b,L/50.0),graph2order)
 
@@ -338,6 +344,6 @@ else:
 
 
 F = pl.gcf()
-#F.savefig("./graphs/algorithm2/testFunction4.pdf",bbox_inches='tight',format='PDF',pad_inches=0.1)
+F.savefig("./graphs/algorithm2/testFunction4.pdf",bbox_inches='tight',format='PDF',pad_inches=0.1)
   
 pl.show()
